@@ -1,4 +1,4 @@
-@testfile
+
 Feature: Karate Basics First feature file
 
   Background:
@@ -10,6 +10,7 @@ Feature: Karate Basics First feature file
     When method Get
     Then status 200
 
+    @testfile
     Scenario: Post request test
       Given path 'order'
       And request {"id": 1,"petId": 0,"quantity": 0,"shipDate": "2025-05-11T11:21:18.126Z","status": "placed","complete": true}
@@ -26,5 +27,9 @@ Feature: Karate Basics First feature file
       Given path 'order/1'
       When method Get
       Then status 200
-      And match response == {"id": 1,"petId": 0,"quantity": 0,"shipDate": "2025-05-11T11:21:18.126+0000","status": "placed","complete": true}
+    #  And match response == {"id": 1,"petId": 0,"quantity": 0,"shipDate": "2025-05-11T11:21:18.126+0000","status": "placed","complete": true}
+
+      # Calling feature file present in the helper folder
+      * call read ('classpath:helper/PostRequest.feature')
+
 
